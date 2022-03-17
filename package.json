@@ -1,0 +1,17 @@
+{
+  "name": "elm-decoder-workshop",
+  "version": "1.0.0",
+  "description": "A bunch of decoders for you to implement",
+  "main": "index.js",
+  "scripts": {
+    "start": "elm-verify-examples && elm-test --watch"
+  },
+  "author": "Gauteab",
+  "license": "ISC",
+  "devDependencies": {
+    "elm": "^0.19.1-5",
+    "elm-format": "^0.8.5",
+    "elm-test": "^0.19.1-revision7",
+    "elm-verify-examples": "^5.2.0"
+  }
+}
