@@ -1,4 +1,4 @@
-module Main exposing (..)
+module SumDecoder exposing (..)
 
 import Json.Decode as Decode exposing (Decoder)
 

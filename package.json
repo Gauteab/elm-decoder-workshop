@@ -4,6 +4,12 @@
   "description": "A bunch of decoders for you to implement",
   "main": "index.js",
   "scripts": {
+    "person": "elm-verify-examples && elm-test tests/VerifyExamples/PersonDecoder/PersonDecoder*.elm --watch",
+    "person-with-phone": "elm-verify-examples && elm-test tests/VerifyExamples/PersonDecoder/PersonWithPhoneDecoder*.elm --watch",
+    "person-with-maybe-phone": "elm-verify-examples && elm-test tests/VerifyExamples/PersonDecoder/PersonWithMaybePhoneDecoder*.elm --watch",
+    "person-with-address": "elm-verify-examples && elm-test tests/VerifyExamples/PersonDecoder/PersonWithAddressDecoder*.elm --watch",
+    "person-employee": "elm-verify-examples && elm-test tests/VerifyExamples/PersonDecoder/EmployeeDecoder*.elm --watch",
+    "sum": "elm-verify-examples && elm-test tests/VerifyExamples/SumDecoder/*.elm --watch",
     "start": "elm-verify-examples && elm-test --watch"
   },
   "author": "Gauteab",
