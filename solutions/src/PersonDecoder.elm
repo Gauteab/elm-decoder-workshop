@@ -23,7 +23,9 @@ type alias Person =
 -}
 personDecoder : Decoder Person
 personDecoder =
-    Decode.fail "TODO: Decoder not yet implemented"
+    Decode.succeed Person
+        |> required "name" string
+        |> required "age" int
 
 
 
@@ -50,7 +52,10 @@ type alias PersonWithPhone =
 -}
 personWithPhoneDecoder : Decoder PersonWithPhone
 personWithPhoneDecoder =
-    Decode.fail "TODO: Decoder not yet implemented"
+    Decode.succeed PersonWithPhone
+        |> required "name" string
+        |> required "age" int
+        |> required "phone" int
 
 
 
@@ -84,7 +89,10 @@ type alias PersonWithMaybePhone =
 -}
 personWithMaybePhoneDecoder : Decoder PersonWithMaybePhone
 personWithMaybePhoneDecoder =
-    Decode.fail "TODO: Decoder not yet implemented"
+    Decode.succeed PersonWithMaybePhone
+        |> required "name" string
+        |> required "age" int
+        |> optional "phone" (maybe string) Nothing
 
 
 
@@ -130,7 +138,19 @@ type alias Address =
 -}
 personWithAddressDecoder : Decoder PersonWithAddress
 personWithAddressDecoder =
-    Decode.fail "TODO: Decoder not yet implemented"
+    Decode.succeed PersonWithAddress
+        |> required "name" string
+        |> required "age" int
+        |> required "phone" (maybe string)
+        |> required "address" addressDecoder
+
+
+addressDecoder : Decoder Address
+addressDecoder =
+    Decode.succeed Address
+        |> required "zipCode" string
+        |> required "street" string
+        |> required "houseNumber" int
 
 
 
@@ -165,4 +185,34 @@ type Role
 -}
 employeeDecoder : Decoder Employee
 employeeDecoder =
-    Decode.fail "TODO: Decoder not yet implemented"
+    Decode.succeed Employee
+        |> custom nameDecoder
+        |> custom roleDecoder
+
+
+nameDecoder : Decoder String
+nameDecoder =
+    Decode.map2 (\first last -> first ++ " " ++ last)
+        (field "firstName" string)
+        (field "lastName" string)
+
+
+type alias JsonData =
+    { isSummerStudent : Bool, company : Maybe String }
+
+
+roleDecoder : Decoder Role
+roleDecoder =
+    Decode.succeed JsonData
+        |> required "summerStudent" bool
+        |> optional "company" (Decode.nullable string) Nothing
+        |> Decode.map
+            (\{ isSummerStudent, company } ->
+                if isSummerStudent then
+                    SummerStudent
+
+                else
+                    company
+                        |> Maybe.map External
+                        |> Maybe.withDefault Internal
+            )
