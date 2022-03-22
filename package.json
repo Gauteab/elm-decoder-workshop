@@ -10,7 +10,8 @@
     "person-with-address": "elm-verify-examples && elm-test tests/VerifyExamples/PersonDecoder/PersonWithAddressDecoder*.elm --watch",
     "person-employee": "elm-verify-examples && elm-test tests/VerifyExamples/PersonDecoder/EmployeeDecoder*.elm --watch",
     "sum": "elm-verify-examples && elm-test tests/VerifyExamples/SumDecoder/*.elm --watch",
-    "start": "elm-verify-examples && elm-test --watch"
+    "start": "elm-verify-examples && elm-test --watch",
+    "solution": "cd solutions && elm-verify-examples && elm-test"
   },
   "author": "Gauteab",
   "license": "ISC",
